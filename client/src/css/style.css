@@ -1,0 +1,20 @@
+
+
+#header
+{
+    padding: 10px;
+    text-align: right;
+    background-color: lightblue;
+}
+
+.space 
+{
+    margin-left: 20px;
+}
+
+#footer
+{
+    padding: 40px;
+    background-color: rgb(71, 69, 69);
+    color: white;
+}
