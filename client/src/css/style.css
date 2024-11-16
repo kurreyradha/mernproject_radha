@@ -1,5 +1,3 @@
-
-
 #header
 {
     padding: 10px;
@@ -17,4 +15,33 @@
     padding: 40px;
     background-color: rgb(71, 69, 69);
     color: white;
+}
+
+#adminHeader
+{
+    height: 100px;
+    background-color: lightblue;
+}
+
+#adminData
+{
+    display: flex;
+    justify-content: space-between;
+}
+#adminMenu
+{
+    width: 20%;
+    background-color: black;
+    color: white;
+
+}
+#adminContent
+{
+    padding-left: 30px;
+    width:80%
+}
+
+.menucolor
+{
+    color: whitesmoke;
 }
