@@ -2,8 +2,59 @@ import Carousel from 'react-bootstrap/Carousel';
 import ban1 from "../images/b1.avif";
 import ban2 from "../images/b2.avif";
 import ban3 from "../images/b3.webp";
+import { useState, useEffect } from 'react';
+import axios from 'axios';
+import Button from 'react-bootstrap/Button';
+import Card from 'react-bootstrap/Card';
+import { useDispatch } from 'react-redux';
+import { addToCard } from '../cardSlice';
 
 const Home=()=>{
+const [mydata, setMydata]=useState([]);
+const dispatch= useDispatch();
+
+  const loadData=()=>{
+    let api="http://localhost:8000/product/showproduct";
+    axios.get(api).then((res)=>{
+      setMydata(res.data);
+      console.log(res.data);
+      
+    })
+  }
+  useEffect(()=>{
+    loadData();
+  }, []);
+
+
+  const addcardData=(id, name, desc, categ, price, image)=>{
+         dispatch(addToCard({id:id, name:name, description:desc, category:categ, price:price, image:image}))
+  }
+
+  const ans=mydata.map((key)=>{
+    return(
+      <>
+        <Card style={{ width: '18rem', marginTop:'20px' }}>
+      <Card.Img variant="top" src={key.image} style={{height:'300px'}} />
+      <Card.Body>
+        <Card.Title>{key.name}</Card.Title>
+        <Card.Text>
+          {key.description}
+          <br/>
+          For- {key.category}
+          <br/>
+         <span style={{color:'red', fontWeight:'bold'}}> Price : {key.price} </span> 
+        </Card.Text>
+        <Button variant="primary"
+         onClick={()=>{addcardData(key.id, key.name, key.description, key.category, key.price, key.image)}}
+        >Add to Cart</Button>
+      </Card.Body>
+    </Card>
+      
+      </>
+    )
+  })
+
+
     return(
         <>
            
@@ -36,6 +87,10 @@ const Home=()=>{
 
 
           <h1 align="center"> Our Trending Collections</h1>
+        <div id="carddata">
+        {ans}
+        </div>
+        
         </>
     )
 }

@@ -5,8 +5,10 @@ import Topmenu from "./components/Topmenu";
 const Layout=()=>{
     return(
         <>
+        <div id="headerPart">
          <Header/>
          <Topmenu/>
+         </div>
   
           <Outlet/>        
 

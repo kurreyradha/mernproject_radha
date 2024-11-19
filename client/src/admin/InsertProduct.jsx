@@ -1,7 +1,7 @@
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import { useState } from 'react';
-
+import axios from "axios";
 const InsertProduct=()=>{
     const [input, setInput]= useState({});
 
@@ -19,9 +19,23 @@ const InsertProduct=()=>{
         console.log(myimage);
     }
 
-    const handleSubmit=()=>{
-    
+    const handleSubmit=async(e)=>{
+      e.preventDefault();
 
+      const formData= new FormData();
+      formData.append("file",myimage);
+      formData.append('upload_preset', 'wbtcvi6u');
+      formData.append('cloud_name', 'dyfr12jd5');
+      const response = await axios.post('https://api.cloudinary.com/v1_1/dyfr12jd5/image/upload', formData);
+      console.log('Image uploaded:', response.data);
+      console.log('Image uploaded:', response.data.url);
+
+      let api1="http://localhost:8000/product/productsave";
+
+    axios.post(api1,{...input, image:response.data.url}).then((res)=>{
+       alert("Data save");
+    })
+       
 
     }
 

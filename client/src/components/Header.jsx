@@ -1,13 +1,14 @@
 import { FaShoppingCart } from "react-icons/fa";
 import { RiAdminFill } from "react-icons/ri";
 import { FaSearch } from "react-icons/fa";
-
 import { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { message } from 'antd';
+
+import { useSelector } from "react-redux";
 
 const Header=()=>{
   const [username, setUsername]= useState("");
@@ -17,6 +18,13 @@ const Header=()=>{
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+
+
+
+  const CardData= useSelector((state)=>state.mycard.card);
+
+  const cardLength=CardData.length;
+
 
     const handleSubmit=()=>{
 
@@ -42,6 +50,7 @@ const Header=()=>{
         <>
           <div id="header">
    
+           {cardLength}
           <FaShoppingCart  />
           
          <a href="#" onClick={handleShow} > 
