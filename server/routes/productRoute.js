@@ -5,6 +5,7 @@ const ProductController= require("../controllers/productController");
 
 route.post("/productsave", ProductController.productSave);
 route.get("/showproduct", ProductController.showProduct);
+route.post("/productdetail", ProductController.productDetail);
 
 
 

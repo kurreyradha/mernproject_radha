@@ -20,8 +20,13 @@ const showProduct=async(req, res)=>{
     res.send(data);
 }
 
+const productDetail=async(req, res)=>{
+    const Data= await ProductModel.findById(req.body.id) ;   
+    res.send(Data);
+}
 
 module.exports={
     productSave,
-    showProduct
+    showProduct,
+    productDetail
 }

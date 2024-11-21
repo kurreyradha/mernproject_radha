@@ -8,10 +8,12 @@ import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import { useDispatch } from 'react-redux';
 import { addToCard } from '../cardSlice';
+import { useNavigate } from 'react-router-dom';
 
 const Home=()=>{
 const [mydata, setMydata]=useState([]);
 const dispatch= useDispatch();
+const navigate= useNavigate();
 
   const loadData=()=>{
     let api="http://localhost:8000/product/showproduct";
@@ -27,14 +29,17 @@ const dispatch= useDispatch();
 
 
   const addcardData=(id, name, desc, categ, price, image)=>{
-         dispatch(addToCard({id:id, name:name, description:desc, category:categ, price:price, image:image}))
+         dispatch(addToCard({id:id, name:name, description:desc, category:categ, price:price, image:image, qnty:1}))
   }
 
   const ans=mydata.map((key)=>{
     return(
       <>
         <Card style={{ width: '18rem', marginTop:'20px' }}>
+
+     <a href='#' onClick={()=>{navigate(`/prodetail/${key._id}`)}}>
       <Card.Img variant="top" src={key.image} style={{height:'300px'}} />
+      </a>
       <Card.Body>
         <Card.Title>{key.name}</Card.Title>
         <Card.Text>
@@ -45,7 +50,7 @@ const dispatch= useDispatch();
          <span style={{color:'red', fontWeight:'bold'}}> Price : {key.price} </span> 
         </Card.Text>
         <Button variant="primary"
-         onClick={()=>{addcardData(key.id, key.name, key.description, key.category, key.price, key.image)}}
+         onClick={()=>{addcardData(key._id, key.name, key.description, key.category, key.price, key.image)}}
         >Add to Cart</Button>
       </Card.Body>
     </Card>

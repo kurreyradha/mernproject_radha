@@ -51,7 +51,11 @@ const Header=()=>{
           <div id="header">
    
            {cardLength}
+
+          <a href="#"  onClick={()=>{navigate("/carddata")}}>
           <FaShoppingCart  />
+            </a> 
+        
           
          <a href="#" onClick={handleShow} > 
           <RiAdminFill className="space" />
