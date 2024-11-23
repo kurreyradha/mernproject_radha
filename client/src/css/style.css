@@ -83,3 +83,18 @@ h1{
 {
     width: 50%;
 }
+
+#shoppage
+{
+    display: flex;
+    justify-content: space-between;
+}
+#shopMenu
+{
+    width: 20%;
+    padding: 30px;
+}
+#shopData
+{
+    width: 80%;
+}
