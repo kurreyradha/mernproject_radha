@@ -98,3 +98,18 @@ h1{
 {
     width: 80%;
 }
+
+#payPage
+{
+    display: flex;
+    justify-content: space-between;
+    padding: 50px;
+}
+#payForm
+{
+    width: 50%;
+}
+#payMethod
+{
+    width: 50%;
+}

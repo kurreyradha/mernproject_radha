@@ -10,6 +10,7 @@ import WoMenCollections from "./pages/WoMenCollections";
 import KidsCollections from "./pages/KidsCollections";
 import Search from "./pages/Search";
 import ShopProduct from "./pages/ShopProduct";
+import CheckOut from "./pages/CheckOut";
 
 const App=()=>{
   return(
@@ -26,6 +27,7 @@ const App=()=>{
             <Route path="kids" element={<KidsCollections/>} />
             <Route path="search" element={<Search/>} />
             <Route path="shop" element={<ShopProduct/>}/>
+            <Route path="checkout" element={<CheckOut/>} />
           </Route>
         </Routes>
         <Routes>

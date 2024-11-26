@@ -1,9 +1,7 @@
 const ProductModel=require("../models/productModel");
 
-
 const productSave=async(req, res)=>{
- const {name, description, category, price, image}= req.body;
- 
+ const {name, description, category, price, image}= req.body; 
  const Product= await ProductModel.create({
     name:name,
     description:description, 
@@ -38,10 +36,25 @@ const searchProduct=async(req, res)=>{
    res.send(Data);
 }
 
+const shopProduct=async(req, res)=>{
+   const {lprice, hprice, mencat, womencat, kidcat }=req.body;
+   console.log(lprice, hprice, mencat, womencat, kidcat);
+
+   const Data= await ProductModel.find({$and:[{price:{$gte:lprice}}, {price:{$lte:hprice}}, {$or:[{"category":mencat}, {"category":womencat}, {"category":kidcat}]}   ]});
+   console.log(Data);
+   res.send(Data);
+}
+
+
+
+
+
 module.exports={
     productSave,
     showProduct,
     productDetail,
     menProductDetail,
-    searchProduct
+    searchProduct,
+    shopProduct
+    
 }

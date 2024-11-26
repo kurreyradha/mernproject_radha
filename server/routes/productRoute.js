@@ -8,6 +8,8 @@ route.get("/showproduct", ProductController.showProduct);
 route.post("/productdetail", ProductController.productDetail);
 route.get("/showmenproduct", ProductController.menProductDetail);
 route.get("/searchproduct", ProductController.searchProduct);
+route.post("/shopproduct", ProductController.shopProduct);
+
 
 
 
