@@ -4,9 +4,10 @@ import { useSelector} from "react-redux";
 import Table from 'react-bootstrap/Table';
 import { useState } from 'react';
 import axios from "axios";
+import { message } from 'antd';
 const CheckOut=()=>{
     const myCard= useSelector((state)=>state.mycard.card);
-   
+    const [input, setInput]=useState({});   
     const [mypro,setMypro] = useState({
       name: "",
       creator: "",
@@ -40,6 +41,10 @@ const CheckOut=()=>{
   };
   
   const handlePay = async () => {
+
+  
+
+
  await  setMypro(
     {
       name: proname,
@@ -57,10 +62,24 @@ const CheckOut=()=>{
     } catch (error) {
       console.log(error);
     }
+ 
+ 
+ 
+    const api = "http://localhost:8000/users/usersave";  
+    axios.post(api, {...input, proname:mypro.name, price:mypro.price}).then((res)=>{
+      console.log("Data save!!!");
+    })
+ 
   };
   
 
 
+  const handleInput=(e)=>{
+    let name=e.target.name;
+    let value=e.target.value;
+    setInput(values=>({...values, [name]:value}));
+    console.log(input);
+  }
 
 
 
@@ -125,23 +144,23 @@ const CheckOut=()=>{
          <Form>
       <Form.Group className="mb-3" controlId="formBasicEmail">
         <Form.Label>Enter Name</Form.Label>
-        <Form.Control type="text"  />
+        <Form.Control type="text"  name="name" value={input.name} onChange={handleInput} />
       </Form.Group>
       <Form.Group className="mb-3" controlId="formBasicEmail">
         <Form.Label>Enter Address</Form.Label>
-        <Form.Control type="text"  />
+        <Form.Control type="text"  name="address" value={input.address} onChange={handleInput} />
       </Form.Group>
       <Form.Group className="mb-3" controlId="formBasicEmail">
         <Form.Label>Enter City</Form.Label>
-        <Form.Control type="text"  />
+        <Form.Control type="text"  name="city" value={input.city} onChange={handleInput} />
       </Form.Group>
       <Form.Group className="mb-3" controlId="formBasicEmail">
         <Form.Label>Enter Pin Code</Form.Label>
-        <Form.Control type="text"  />
+        <Form.Control type="text"  name="pincode" value={input.pincode} onChange={handleInput} />
       </Form.Group>
       <Form.Group className="mb-3" controlId="formBasicEmail">
         <Form.Label>Enter Mobile</Form.Label>
-        <Form.Control type="text"  />
+        <Form.Control type="text"  name="mobile" value={input.mobile} onChange={handleInput} />  
       </Form.Group>
       <Button variant="primary" type="button" onClick={handlePay}>
         Submit

@@ -6,6 +6,7 @@ const bodyparser = require('body-parser')
 const adminRoute= require("./routes/adminRoute");
 const productRoute= require("./routes/productRoute");
 const paymentRoute = require("./routes/payment");
+const userRoute= require("./routes/usersRoutes");
 require("dotenv").config();
 const PORT=process.env.PORT || 8000
 
@@ -17,6 +18,8 @@ app.use(bodyparser.json())
 
 app.use("/adminuser", adminRoute);
 app.use("/product", productRoute);
+app.use("/users", userRoute);
+
 app.use("/api/payment/",paymentRoute);
 
 
